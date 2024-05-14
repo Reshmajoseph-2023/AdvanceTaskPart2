@@ -1,6 +1,9 @@
 using AdvancedtaskSpecflow.Assert_Helpers;
 using AdvancedtaskSpecflow.Pages.Components.Login;
 using AdvancedtaskSpecflow.Steps;
+using AdvancedtaskSpecflow.Test_Model;
+using AdvancedtaskSpecflow.Utilities;
+using Newtonsoft.Json;
 using System;
 using TechTalk.SpecFlow;
 
@@ -37,6 +40,14 @@ namespace AdvancedtaskSpecflow.StepDefinitions
         public void ThenNewPasswordShouldBeUpdatedSuccessfully()
         {
             ChangePasswordAssertionObj.assertionChangePassword();
+            List<ChangePassword> changePasswordModel = JsonHelper.ReadTestDataFromJson<ChangePassword>("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\JsonData\\ChangePassword.json");
+            foreach (var data in changePasswordModel)
+            {
+                string newPassword = data.NewPassword;
+                PasswordManager passwordmanager = new PasswordManager();
+                passwordmanager.UpdatePassword(newPassword);
+
+            }
         }
     }
 }
