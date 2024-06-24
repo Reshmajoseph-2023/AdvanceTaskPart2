@@ -22,11 +22,12 @@ namespace AdvancedtaskSpecflow.Assert_Helpers
         {
              Assert.IsTrue(true, "Failed to click 'edit'");
         }
-        public void AssertionUpdate(ShareSkillModel data)
+        public void AssertionUpdate()
         {
-
-             string actualTitle = manageListingsComponentObj.getTitle();
-             Assert.That(actualTitle == data.title, "Actual and expected message do not match");
+            string expectedMessage = "Service Listing Updated Successfully";
+            string actualMessage = manageListingsComponentObj.GetMessageWindow();
+            Console.WriteLine(actualMessage);
+            Assert.That(actualMessage== expectedMessage, "Actual and expected message do not match");
         }
         public void AssertionDelete()
         {
@@ -47,9 +48,6 @@ namespace AdvancedtaskSpecflow.Assert_Helpers
         {
             Assert.IsTrue(true, "Failed to enable button.");
         }
-        public void AssertionSendRequest()
-        {
-            Assert.Fail("No such element");
-        }
+       
     }
 }

@@ -77,16 +77,13 @@ namespace AdvancedtaskSpecflow.Steps
                 }
             }
         }
-        public void deleteEducation(string AddJsonFilePath)
+        public void deleteEducation()
         {
 
-            List<EducationModel> EducationModelList = JsonHelper.ReadTestDataFromJson<EducationModel>(AddJsonFilePath);
-            foreach (var deleteeducation in EducationModelList)
-            {
-                addDeleteEducationComponentObj.DeleteEducation(deleteeducation);
+            
+                addDeleteEducationComponentObj.DeleteEducation();
                 string actualmessage = addDeleteEducationComponentObj.GetMessageWindow();
                 Console.WriteLine(actualmessage);
             }
         }
     }
-}

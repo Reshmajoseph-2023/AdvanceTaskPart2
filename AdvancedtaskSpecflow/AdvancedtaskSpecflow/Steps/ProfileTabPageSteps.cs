@@ -40,15 +40,18 @@ namespace AdvancedtaskSpecflow.Steps
         {
             profilePageTabsComponents.clickOnManageRequest();
         }
-
+        public void clickAddShareSkillIcon()
+        {
+            profilePageTabsComponents.clickAddShareSkill();
+        }
         public void clickUpdateShareSkillIcon()
         {
             profilePageTabsComponents.clickupdateShareSkill();
         }
-        public void clickDeleteShareSkillIcon(ShareSkillModel deleteskill)
+        public void clickDeleteShareSkillIcon()
 
         {
-            profilePageTabsComponents.clickDeleteShareSkill(deleteskill);
+            profilePageTabsComponents.clickDeleteShareSkill();
         }
         public void clickUserTab()
         {

@@ -8,6 +8,7 @@ namespace AdvancedtaskSpecflow.Test_Model
 {
     public class ShareSkillModel
     {
+        public int Id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public string category { get; set; }
@@ -18,6 +19,7 @@ namespace AdvancedtaskSpecflow.Test_Model
         public string endDate { get; set; }
         public string startTime { get; set; }
         public string endTime { get; set; }
+        public string Available { get; set; }
         public string charge { get; set; }
     }
 }

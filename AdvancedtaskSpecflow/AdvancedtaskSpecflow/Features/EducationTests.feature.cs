@@ -74,46 +74,28 @@ namespace AdvancedtaskSpecflow.Features
             await testRunner.CollectScenarioErrorsAsync();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Delete all existing education records")]
-        public async System.Threading.Tasks.Task _01_DeleteAllExistingEducationRecords()
+        public virtual async System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Delete all existing education records", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
-this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
 #line 7
        await testRunner.GivenAsync("User logs into Mars portal and navigate to education tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
        await testRunner.WhenAsync("User deletes existing records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
-       await testRunner.ThenAsync("education records deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 - Add new education with valid details")]
+        [NUnit.Framework.DescriptionAttribute("01 - Add new education with valid details")]
         [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
             "Data\\AddEducation.json", null)]
-        public async System.Threading.Tasks.Task _02_AddNewEducationWithValidDetails(string addJsonFilePath, string[] exampleTags)
+        public async System.Threading.Tasks.Task _01_AddNewEducationWithValidDetails(string addJsonFilePath, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add new education with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Add new education with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -124,13 +106,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 12
-       await testRunner.GivenAsync("User logs into Mars portal and navigate to education tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+await this.FeatureBackgroundAsync();
 #line hidden
-#line 13
+#line 12
        await testRunner.WhenAsync(string.Format("User adds a new record with education data \"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 13
        await testRunner.ThenAsync("Mars portal should save the new education record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -138,17 +120,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 - Delete an existing education from the list")]
+        [NUnit.Framework.DescriptionAttribute("02 - Delete a education record")]
         [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
-            "Data\\DeleteEducation.json", null)]
-        public async System.Threading.Tasks.Task _03_DeleteAnExistingEducationFromTheList(string addJsonFilePath, string[] exampleTags)
+            "Data\\AddEducationToDelete.json", null)]
+        public async System.Threading.Tasks.Task _02_DeleteAEducationRecord(string addJsonFilePath, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Delete an existing education from the list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Delete a education record", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
-this.ScenarioInitialize(scenarioInfo);
+ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -157,14 +139,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
 #line 21
-       await testRunner.GivenAsync("User logs into Mars portal and navigate to education tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+       await testRunner.WhenAsync(string.Format("user adds an education to delete\"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
-       await testRunner.WhenAsync(string.Format("User deletes the speccific education record \"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+       await testRunner.AndAsync("user delete the added education record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
-       await testRunner.ThenAsync("the record should be deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+       await testRunner.ThenAsync("the education should be deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

@@ -12,7 +12,7 @@ namespace AdvancedtaskSpecflow.StepDefinitions
     [Binding]
     public class CertificationsFeatureStepDefinitions
     {
- 
+
         LoginComponent LoginPageObj;
         CertificationStep certificationStepsObj;
         CertificationComponent certificationComponentObj;
@@ -34,24 +34,24 @@ namespace AdvancedtaskSpecflow.StepDefinitions
         public void GivenUserLogsIntoMarsPortalAndNavigateToCertificationTabSuccessfully()
         {
             LoginPageObj.LoginSteps();
-           
+
             profileTabPageStepsObj.clickCertificationTab();
         }
-        
-          
-        
+
+
+
         [When(@"User deletes the existing records")]
         public void WhenUserDeletesTheExistingRecords()
         {
             certificationStepsObj.DeleteExistingRecords();
         }
-      
+
         [When(@"User adds a new record with certification data ""([^""]*)""")]
         public void WhenUserAddsANewRecordWithCertificationData(string AddJsonFilePath)
         {
-         
+
             certificationStepsObj.AddCertification(AddJsonFilePath);
-         
+
         }
 
         [Then(@"Mars portal should save the new certification record")]
@@ -64,20 +64,26 @@ namespace AdvancedtaskSpecflow.StepDefinitions
         [When(@"User adds a new record with invalid certification data ""([^""]*)""")]
         public void WhenUserAddsANewRecordWithInvalidCertificationData(string AddJsonFilePath)
         {
-           
+
             certificationStepsObj.AddCertification(AddJsonFilePath);
         }
-        [When(@"User deletes the speccific certification record ""([^""]*)""")]
-        public void WhenUserDeletesTheSpeccificCertificationRecord(string AddJsonFilePath)
+
+
+        [When(@"user adds an certification to delete ""([^""]*)""")]
+        public void WhenUserAddsAnCertificationToDelete(string AddJsonFilePath)
         {
-            certificationStepsObj.DeleteCertification(AddJsonFilePath);
+            certificationStepsObj.AddCertification(AddJsonFilePath);
         }
 
+        [When(@"user delete the added certification record")]
+        public void WhenUserDeleteTheAddedCertificationRecord()
+        {
+            certificationStepsObj.DeleteCertification();
+        }
         [Then(@"the certification record should be deleted successfully")]
         public void ThenTheCertificationRecordShouldBeDeletedSuccessfully()
         {
             assertionCertificationObj.assertionDeleteCertification();
         }
-        
     }
 }

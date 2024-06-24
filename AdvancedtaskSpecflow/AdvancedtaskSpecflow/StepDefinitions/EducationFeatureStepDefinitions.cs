@@ -60,14 +60,20 @@ namespace AdvancedtaskSpecflow.StepDefinitions
 
         }
 
-        [When(@"User deletes the speccific education record ""([^""]*)""")]
-        public void WhenUserDeletesTheSpeccificEducationRecord(string AddJsonFilePath)
+        [When(@"user adds an education to delete""([^""]*)""")]
+        public void WhenUserAddsAnEducationToDelete(string AddJsonFilePath)
         {
-            educationStepsObj.deleteEducation(AddJsonFilePath);
+            educationStepsObj.AddEducation(AddJsonFilePath);
         }
 
-        [Then(@"the record should be deleted successfully")]
-        public void ThenTheRecordShouldBeDeletedSuccessfully()
+       
+        [When(@"user delete the added education record")]
+        public void WhenUserDeleteTheAddedEducationRecord()
+        {
+            educationStepsObj.deleteEducation();
+        }
+        [Then(@"the education should be deleted successfully")]
+        public void ThenTheEducationShouldBeDeletedSuccessfully()
         {
             assertionEducationObj.assertionDeleteEducation();
         }

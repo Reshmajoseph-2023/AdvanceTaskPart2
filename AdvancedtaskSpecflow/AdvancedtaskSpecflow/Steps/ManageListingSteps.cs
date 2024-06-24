@@ -32,6 +32,17 @@ namespace AdvancedtaskSpecflow.Steps
             bool clickview = manageListingsComponentObj.VerifyClickEdit();
             Console.WriteLine("User was able to click on edit listing");
         }
+
+        public void AddShareSkill(string AddJsonFilePath)
+        {
+            List<ShareSkillModel> ShareSkillModelList = JsonHelper.ReadTestDataFromJson<ShareSkillModel>(AddJsonFilePath);
+            foreach (var adddata in ShareSkillModelList)
+            {
+
+                manageListingsComponentObj.addshareSkill(adddata);
+               
+            }
+        }
         public void verifyUpdateOption(string AddJsonFilePath)
         {
             List<ShareSkillModel> ShareSkillModelList = JsonHelper.ReadTestDataFromJson<ShareSkillModel>(AddJsonFilePath);
@@ -39,30 +50,23 @@ namespace AdvancedtaskSpecflow.Steps
             {
 
                 manageListingsComponentObj.VerifyClickUpdate(updatedata);
-                assertionManageListingsObj.AssertionUpdate(updatedata);
+                
             }
         }
-        public void verifyDeleteOption(string DeleteJsonFilePath)
+        public void verifyDeleteOption()
         {
-            List<ShareSkillModel> ShareSkillModelList = JsonHelper.ReadTestDataFromJson<ShareSkillModel>(DeleteJsonFilePath);
-            foreach (var deleteskill in ShareSkillModelList)
-            {
-                profileTabPageStepsObj.clickDeleteShareSkillIcon(deleteskill);
-                manageListingsComponentObj.VerifyClickDelete(deleteskill);
+                
+                profileTabPageStepsObj.clickDeleteShareSkillIcon();
+                manageListingsComponentObj.VerifyClickDelete();
                 string actualmessage = manageListingsComponentObj.GetMessageWindow();
                 Console.WriteLine(actualmessage);
-            }
+           
         }
         public void verifyToggleOption()
         {
             bool clickview = manageListingsComponentObj.VerifyClickEnable();
             Console.WriteLine("User was able to enable service");
         }
-        public void verifySendRequestOption()
-        {
-    
-            manageListingsComponentObj.VerifySendRequest();
-
-        }
+       
     }
 }

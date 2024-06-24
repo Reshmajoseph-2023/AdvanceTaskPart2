@@ -35,7 +35,8 @@ namespace AdvancedtaskSpecflow.Features
         public virtual async System.Threading.Tasks.Task FeatureSetupAsync()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunnerForAssembly(null, NUnit.Framework.TestContext.CurrentContext.WorkerId);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManageRequestFeature", "As a user, \r\nI would like to view received,sent and completed requests", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManageRequestFeature", "As a user, \r\nI would like to receive, sent and complete requests in the Manage Re" +
+                    "quests", ProgrammingLanguage.CSharp, featureTags);
             await testRunner.OnFeatureStartAsync(featureInfo);
         }
         
@@ -73,75 +74,61 @@ namespace AdvancedtaskSpecflow.Features
             await testRunner.CollectScenarioErrorsAsync();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Manage received user request")]
-        public async System.Threading.Tasks.Task _01_ManageReceivedUserRequest()
+        public virtual async System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Manage received user request", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
-this.ScenarioInitialize(scenarioInfo);
+#line 6
 #line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
 #line 8
  await testRunner.GivenAsync("User logs into Mars portal and navigate to manage request tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
- await testRunner.WhenAsync("user click on received request in manage request tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("01 - Accept the received requests in the Manage Requests")]
+        [NUnit.Framework.TestCaseAttribute("1", null)]
+        public async System.Threading.Tasks.Task _01_AcceptTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Accept the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
- await testRunner.ThenAsync("user should be able to view received requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    this.ScenarioInitialize(scenarioInfo);
 #line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
             }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 - Manage sent request")]
-        public async System.Threading.Tasks.Task _02_ManageSentRequest()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Manage sent request", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 11
+    await testRunner.WhenAsync("user click on received request in manage request tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ await testRunner.AndAsync(string.Format("User accepts the received requests with \'{0}\' in the Manage Requests", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 13
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 14
- await testRunner.GivenAsync("User logs into Mars portal and navigate to manage request tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 15
- await testRunner.WhenAsync("user click on sent request in manage request tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
- await testRunner.ThenAsync("user should be able to view sent requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("The accept requests with \'{0}\' are accepted successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 - Manage completed request")]
-        public async System.Threading.Tasks.Task _03_ManageCompletedRequest()
+        [NUnit.Framework.DescriptionAttribute("02 - Decline the received requests in the Manage Requests")]
+        [NUnit.Framework.TestCaseAttribute("3", null)]
+        public async System.Threading.Tasks.Task _02_DeclineTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Manage completed request", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
-this.ScenarioInitialize(scenarioInfo);
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Decline the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -150,17 +137,88 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 19
-    await testRunner.GivenAsync("User logs into Mars portal and navigate to manage request tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+await this.FeatureBackgroundAsync();
 #line hidden
 #line 20
  await testRunner.WhenAsync("user click on received request in manage request tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
- await testRunner.AndAsync("user accepts the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("User declines the received requests with \'{0}\' in the Manage Requests", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
- await testRunner.ThenAsync("the requets should be marked as complete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("The decline requests with \'{0}\' are declined successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03 - Complete the received requests in the Manage Requests")]
+        [NUnit.Framework.TestCaseAttribute("2", null)]
+        public async System.Threading.Tasks.Task _03_CompleteTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Complete the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 29
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 30
+    await testRunner.WhenAsync("user click on received request in manage request tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
+ await testRunner.AndAsync(string.Format("user accepts and completes the received requests with \'{0}\' in the Manage Request" +
+                            "s", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 32
+ await testRunner.ThenAsync(string.Format("The received requests with \'{0}\' are completed successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("04 - Withdraw the sent requests in the Manage Requests")]
+        [NUnit.Framework.TestCaseAttribute("1", null)]
+        public async System.Threading.Tasks.Task _04_WithdrawTheSentRequestsInTheManageRequests(string id, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Withdraw the sent requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 39
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 40
+    await testRunner.WhenAsync("User clicks sent requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+ await testRunner.AndAsync(string.Format("User withdraw the sent requests with \'{0}\' in the Manage Requests", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ await testRunner.ThenAsync(string.Format("The withdraw requests with \'{0}\' are withdrawn successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

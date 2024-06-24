@@ -20,23 +20,23 @@ namespace AdvancedtaskSpecflow.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "4.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Feature Certification")]
-    public partial class FeatureCertificationFeature
+    [NUnit.Framework.DescriptionAttribute("ManageListing")]
+    public partial class ManageListingFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FeatureCertification.feature"
+#line 1 "ManageListing.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual async System.Threading.Tasks.Task FeatureSetupAsync()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunnerForAssembly(null, NUnit.Framework.TestContext.CurrentContext.WorkerId);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Feature Certification", "As a Skillswap user I would be able to show what CertificationI hold.\r\nSo that th" +
-                    "e people seeking for skills can know my certifications.", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManageListing", "As a user, \r\nI would like to edit, update, view and delete Skills in the Manage L" +
+                    "istings", ProgrammingLanguage.CSharp, featureTags);
             await testRunner.OnFeatureStartAsync(featureInfo);
         }
         
@@ -77,26 +77,23 @@ namespace AdvancedtaskSpecflow.Features
         public virtual async System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
 #line 6
- #line hidden
-#line 7
-            await testRunner.GivenAsync("User logs into Mars portal and navigate to certification tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
-            await testRunner.WhenAsync("User deletes the existing records", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+    await testRunner.GivenAsync("User logs into Mars portal and navigate to manage listings tab successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Add new certification with valid details")]
+        [NUnit.Framework.DescriptionAttribute("01 -View Manage Listings")]
         [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
-            "Data\\AddPositiveInputsCertification.json", null)]
-        public async System.Threading.Tasks.Task _01_AddNewCertificationWithValidDetails(string addJsonFilePath, string[] exampleTags)
+            "Data\\AddShareSkill.json", null)]
+        public async System.Threading.Tasks.Task _01_ViewManageListings(string addJsonFilePath, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Add new certification with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 -View Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -107,62 +104,34 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 6
- await this.FeatureBackgroundAsync();
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 10
+    await testRunner.GivenAsync(string.Format("User Add a Share Skill\"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
-            await testRunner.WhenAsync(string.Format("User adds a new record with certification data \"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    await testRunner.WhenAsync("User click to view listing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
-            await testRunner.ThenAsync("Mars portal should save the new certification record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ await testRunner.ThenAsync("user should be able to view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 - Add new certification with invalid details")]
+        [NUnit.Framework.DescriptionAttribute("02 -Edit Manage Listings")]
         [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
-            "Data\\AddNegativeCertification.json", null)]
-        public async System.Threading.Tasks.Task _02_AddNewCertificationWithInvalidDetails(string addJsonFilePath, string[] exampleTags)
+            "Data\\AddShareSkill.json", "C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
+            "Data\\UpdateShareSkill.json", null)]
+        public async System.Threading.Tasks.Task _02_EditManageListings(string addJsonFilePath, string updateJsonFilePath, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add new certification with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
- await this.FeatureBackgroundAsync();
-#line hidden
-#line 19
-           await testRunner.WhenAsync(string.Format("User adds a new record with invalid certification data \"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
+            argumentsOfScenario.Add("UpdateJsonFilePath", updateJsonFilePath);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 -Edit Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
-           await testRunner.ThenAsync("Mars portal should save the new certification record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 - Delete a certification record")]
-        [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
-            "Data\\AddPositiveInputsCertification.json", null)]
-        public async System.Threading.Tasks.Task _03_DeleteACertificationRecord(string addJsonFilePath, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Delete a certification record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -173,16 +142,88 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 6
- await this.FeatureBackgroundAsync();
+await this.FeatureBackgroundAsync();
 #line hidden
-#line 27
-          await testRunner.WhenAsync(string.Format("user adds an certification to delete \"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+    await testRunner.GivenAsync(string.Format("User Add a Share Skill\"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 28
-          await testRunner.AndAsync("user delete the added certification record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+    await testRunner.WhenAsync(string.Format("User click on edit and update the \"{0}\" listing", updateJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 29
-          await testRunner.ThenAsync("the certification record should be deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+    await testRunner.ThenAsync("record should be updated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03 -Delete Manage Listings")]
+        [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
+            "Data\\AddShareSkill.json", null)]
+        public async System.Threading.Tasks.Task _03_DeleteManageListings(string addJsonFilePath, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 -Delete Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 31
+ await testRunner.GivenAsync(string.Format("User Add a Share Skill\"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 32
+ await testRunner.WhenAsync("User deletes the listing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+ await testRunner.ThenAsync("that record should be deleted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("04 - Toggle Enable/disable")]
+        [NUnit.Framework.TestCaseAttribute("C:\\Users\\reshm\\source\\repos\\second\\AdvancedtaskSpecflow\\AdvancedtaskSpecflow\\Json" +
+            "Data\\AddShareSkill.json", null)]
+        public async System.Threading.Tasks.Task _04_ToggleEnableDisable(string addJsonFilePath, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("AddJsonFilePath", addJsonFilePath);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Toggle Enable/disable", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 41
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 6
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 42
+ await testRunner.GivenAsync(string.Format("User Add a Share Skill\"{0}\"", addJsonFilePath), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 43
+    await testRunner.WhenAsync("User click to enable/disable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
+    await testRunner.ThenAsync("Sevice should be activated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

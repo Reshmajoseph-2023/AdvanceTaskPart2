@@ -84,16 +84,14 @@ namespace AdvancedtaskSpecflow.Steps
             }
 
         }
-        public void DeleteCertification(string AddJsonFilePath)
+        public void DeleteCertification()
         {
 
-            List<CertificationModel> CertiificationModelList = JsonHelper.ReadTestDataFromJson<CertificationModel>(AddJsonFilePath);
-            foreach (var deletecertification in CertiificationModelList)
-            {
-                addDeleteCertificationComponentObj.DeleteCertification(deletecertification);
+            
+                addDeleteCertificationComponentObj.DeleteCertification();
                 string actualmessage = addDeleteCertificationComponentObj.GetMessageWindow();
                 Console.WriteLine(actualmessage);
-            }
+            
         }
     }
 

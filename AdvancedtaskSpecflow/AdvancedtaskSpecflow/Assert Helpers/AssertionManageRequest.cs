@@ -6,30 +6,28 @@ using OpenQA.Selenium;
 
 namespace AdvancedtaskSpecflow.Assert_Helpers
 {
-    public class AssertionManageRequest : CommonDriver
+    public class AssertionManageRequest 
     {
-        ManageRequestComponent manageRequestComponentObj;
         
-        public AssertionManageRequest()
+        public static void assertAcceptSuccessMessage(String expected, String actual)
+            
         {
-            manageRequestComponentObj = new ManageRequestComponent();
+           
+            Assert.That(expected == actual, "Actual message and expected message do not match");
         }
-        public void AssertionReceivedRequest()
-        {
-            Assert.IsTrue(true, "Failed to click 'view'");
-        }
-        public void AssertionSentRequest()
-        {
-            Assert.IsTrue(true, "Failed to click 'sent'");
-        }
-        public void AssertionCompleteRequest()
-        {
-            string actualmessage = manageRequestComponentObj.GetMessageWindow();
-            string expectedmessage = "Service has been updated";
-            Assert.That(actualmessage == expectedmessage, "Actual and expected message does not match");
-            Console.WriteLine("User was able to view all complete request");
 
+        public static void assertDeclineSuccessMessage(String expected, String actual)
+        {
+            Assert.That(expected == actual, "Actual message and expected message do not match");
         }
-       
+
+        public static void assertCompleteSuccessMessage(String expected, String actual)
+        {
+            Assert.That(expected == actual, "Actual message and expected message do not match");
+        }
+        public static void assertWithdrawSuccessMessage(String expected, String actual)
+        {
+            Assert.That(expected == actual, "Actual message and expected message do not match");
+        }
     }
 }

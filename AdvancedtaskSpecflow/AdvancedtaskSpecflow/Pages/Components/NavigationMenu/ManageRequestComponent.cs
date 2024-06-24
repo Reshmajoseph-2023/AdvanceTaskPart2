@@ -1,4 +1,5 @@
-﻿using AdvancedtaskSpecflow.Utilities;
+﻿using AdvancedtaskSpecflow.Test_Model;
+using AdvancedtaskSpecflow.Utilities;
 using OpenQA.Selenium;
 
 
@@ -6,142 +7,119 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
 {
     public class ManageRequestComponent:CommonDriver
     {
-        private IWebElement ClickReceive;
-        private IWebElement ClickSent;
-        private IWebElement ClickEnable;
-        private IWebElement ClickSendRequest;
-        private IWebElement SaveButton;
-        private IWebElement messageBox;
-        private IWebElement ClickAccept;
-        private IWebElement ClickonStatusIcon;
       
+        private IWebElement SaveButton;
+        private IWebElement ClickAccept;
+        private IWebElement successMessage;
+        private IWebElement DeclineButton;
+        private IWebElement CompleteButton;
+        private IWebElement WithdrawButton;
+        private IWebElement closeMessageIcon;
 
-        public void renderReceivedComponents()
+      
+        
+        public void renderAcceptComponent(string title)
         {
             try
             {
 
-
-                ClickReceive = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/div[1]/div/a[1]"));
+                ClickAccept = driver.FindElement(By.XPath($"//table[@class='ui single line sortable striped table sortableHeader']//a[text()='{title}']/../following-sibling::td[@class='two wide']/button[text()='Accept']"));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public void renderSentCompnents()
+        public void renderDeclineComponent(string title)
         {
             try
             {
-
-
-                ClickSent = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/div[1]/div/a[2]"));
+                DeclineButton = driver.FindElement(By.XPath($"//table[@class='ui single line sortable striped table sortableHeader']//a[text()='{title}']/../following-sibling::td[@class='two wide']/button[text()='Decline']"));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public void renderStatusComponent()
+        public void renderCompleteComponent(string title)
         {
             try
             {
-
-
-                ClickonStatusIcon = driver.FindElement(By.XPath("//*[@id=\"received-request-section\"]/div[2]/div[1]/table/thead/tr/th[5]"));
+                CompleteButton = driver.FindElement(By.XPath($"//table[@class='ui single line sortable striped table sortableHeader']//a[text()='{title}']/../following-sibling::td[@class='two wide']/button[text()='Complete']"));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public void renderAcceptComponent()
+        public void renderWithdrawComponent(string title)
         {
             try
             {
-
-
-                ClickAccept = driver.FindElement(By.XPath("//*[@id=\"received-request-section\"]/div[2]/div[1]/table/tbody/tr[1]/td[8]/button[1]"));
+                WithdrawButton = driver.FindElement(By.XPath($"//table[@class='ui single line sortable striped table sortableHeader']//a[text()='{title}']/../following-sibling::td[@class='two wide']/button[text()='Withdraw']   "));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public void renderAddMessage()
+        public void renderSuccessMessage()
         {
             try
             {
-                Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 9);
-                messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
-
+                successMessage = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+                closeMessageIcon = driver.FindElement(By.XPath("//*[@class='ns-close']"));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public bool VerifyReceivedRequest()
-        {
-            try
-            {
-                renderReceivedComponents();
-                Thread.Sleep(6000);
-                ClickReceive.Click();
-                Thread.Sleep(6000);
-                return true;
-            }
-            catch (Exception ex)
-            {
 
-                Console.WriteLine("Error: " + ex.Message);
-                return false;
-            }
-        }
-        public bool VerifySentRequest()
+        public void ClickOnAccept(ReceivedRequestsDataModel receivedRequestsData)
         {
-            try
-            {
-                renderSentCompnents();
-                Thread.Sleep(6000);
-                ClickSent.Click();
-                Thread.Sleep(6000);
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Error: " + ex.Message);
-                return false;
-            }
-
-        }
-        public void ClickOnAccept()
-        {
-            try
-            {
-                renderStatusComponent();
-                ClickonStatusIcon.Click();
-                Thread.Sleep(6000);
-                renderAcceptComponent();
+            
+                Thread.Sleep(30000);
+                string title = receivedRequestsData.Title;
+                renderAcceptComponent(title);
                 ClickAccept.Click();
-                Thread.Sleep(6000);
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Error: " + ex.Message);
-
-            }
+                Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 4);
+     
         }
+        public void clickDeclineButton(ReceivedRequestsDataModel receivedRequestsData)
+        {
+               Thread.Sleep(30000);
+               string title = receivedRequestsData.Title;
+               renderDeclineComponent(title);
+               DeclineButton.Click();
+               Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 4);
+        }
+        public void clickCompleteButton(ReceivedRequestsDataModel receivedRequestsData)
+        {
+              Thread.Sleep(30000);
+              string title = receivedRequestsData.Title;
+              renderCompleteComponent(title);
+              CompleteButton.Click();
+              Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 4);
+        }
+        public void clickWithdrawButton(SentRequestsDataModel sentRequestsData)
+        { 
+             Thread.Sleep(4000);
+             string title = sentRequestsData.Title;
+             renderWithdrawComponent(title);
+             WithdrawButton.Click();
+             Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 4);
+        }
+
         public string GetMessageWindow()
         {
 
-            renderAddMessage();
-            //get the text of the message element
-            return messageBox.Text;
-
+            renderSuccessMessage();
+            string message = successMessage.Text;
+            closeMessageIcon.Click();
+            Thread.Sleep(6000);
+            return message;
+            
         }
     }
 }

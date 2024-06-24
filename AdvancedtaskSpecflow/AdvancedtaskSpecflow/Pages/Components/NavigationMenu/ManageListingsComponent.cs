@@ -1,6 +1,7 @@
 ﻿using AdvancedtaskSpecflow.Test_Model;
 using AdvancedtaskSpecflow.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
@@ -35,7 +36,10 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
         private IWebElement ElementToDelete;
         private IWebElement newTitle;
         private IWebElement ClickYes;
-        
+        private IWebElement EnterAvailable;
+
+
+
         public void renderViewCompnents()
         {
             try
@@ -194,6 +198,18 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
             }
 
         }
+        public void renderAvailable()
+        {
+            try
+            {
+                EnterAvailable = driver.FindElement(By.Name("Available"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
         public void renderClearTag()
         {
             try
@@ -302,27 +318,23 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
                 return false;
             }
         }
-        public void VerifyClickUpdate(ShareSkillModel updateShareSkill)
+        public void addshareSkill(ShareSkillModel addShareSkill)
         {
-
-
             renderTitle();
-            TitleTextbox.Clear();
-            TitleTextbox.SendKeys(updateShareSkill.title);
+            TitleTextbox.SendKeys(addShareSkill.title);
             renderDescription();
-            DescriptionTextbox.Clear();
-            DescriptionTextbox.SendKeys(updateShareSkill.description);
+            DescriptionTextbox.SendKeys(addShareSkill.description);
             renderCategory();
             CategoryDropdown.Click();
-            CategoryDropdown.SendKeys(updateShareSkill.category);
+            CategoryDropdown.SendKeys(addShareSkill.category);
             CategoryDropdown.Click();
             renderSubCategory();
             SubcategoryDropdown.Click();
-            SubcategoryDropdown.SendKeys(updateShareSkill.subcategory);
+            SubcategoryDropdown.SendKeys(addShareSkill.subcategory);
             SubcategoryDropdown.Click();
             renderTags();
             TagsTextbox.Click();
-            TagsTextbox.SendKeys(updateShareSkill.tagone);
+            TagsTextbox.SendKeys(addShareSkill.tagone);
             TagsTextbox.SendKeys(Keys.Enter);
             renderServiceType();
             ClickOneOff.Click();
@@ -330,25 +342,41 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
             ClickOnsite.Click();
             renderAvailableDays();
             StartDate.Click();
-            StartDate.SendKeys(updateShareSkill.startDate);
+            StartDate.SendKeys(addShareSkill.startDate);
             EndDate.Click();
-            EndDate.SendKeys(updateShareSkill.endDate);
+            EndDate.SendKeys(addShareSkill.endDate);
             SelectDay.Click();
             StartTime.Click();
-            StartTime.SendKeys(updateShareSkill.startTime);
+            StartTime.SendKeys(addShareSkill.startTime);
             EndTime.Click();
-            EndTime.SendKeys(updateShareSkill.endTime);
+            EndTime.SendKeys(addShareSkill.endTime);
             renderSkillTrade();
             ClickCredit.Click();
             renderCredit();
             EnterCharge.Click();
-            EnterCharge.SendKeys(updateShareSkill.charge);
+            EnterCharge.SendKeys(addShareSkill.charge);
             renderSaveButton();
             SaveButton.Click();
-
+            Thread.Sleep(6000);
         }
 
-        public void VerifyClickDelete(ShareSkillModel deleteskill)
+        public void VerifyClickUpdate(ShareSkillModel updateShareSkill)
+        {
+
+            renderTitle();
+            TitleTextbox.Clear();
+            TitleTextbox.SendKeys(updateShareSkill.title);
+            renderDescription();
+            DescriptionTextbox.Clear();
+            DescriptionTextbox.SendKeys(updateShareSkill.description);
+            renderAvailable();
+            EnterAvailable.SendKeys(updateShareSkill.Available);
+            renderSaveButton();
+            SaveButton.Click();
+            
+        }
+
+        public void VerifyClickDelete()
         {
 
             renderDeleteYes();
@@ -372,31 +400,14 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
                 return false;
             }
         }
-        public void VerifySendRequest()
-        {
-
-            try
-            {
-
-                // Attempt to find the element
-                IWebElement element = driver.FindElement(By.Id("nonexistent-element"));
-
-                // If the element is found, perform some action
-                element.Click();
-            }
-            catch (NoSuchElementException ex)
-            {
-                // Handle the "no such element" exception
-                Console.WriteLine("Element not found: " + ex.Message);
-            }
-        }
+       
         public string GetMessageWindow()
         {
 
             renderAddMessage();
             //get the text of the message element
             return messageBox.Text;
-
+            
         }
         public string getTitle()
         {
