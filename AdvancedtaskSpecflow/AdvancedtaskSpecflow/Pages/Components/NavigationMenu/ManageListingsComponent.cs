@@ -325,13 +325,11 @@ namespace AdvancedtaskSpecflow.Pages.Components.NavigationMenu
             renderDescription();
             DescriptionTextbox.SendKeys(addShareSkill.description);
             renderCategory();
-            CategoryDropdown.Click();
-            CategoryDropdown.SendKeys(addShareSkill.category);
-            CategoryDropdown.Click();
+            SelectElement chooseCategory = new SelectElement(CategoryDropdown);
+            chooseCategory.SelectByText(addShareSkill.category);
             renderSubCategory();
-            SubcategoryDropdown.Click();
-            SubcategoryDropdown.SendKeys(addShareSkill.subcategory);
-            SubcategoryDropdown.Click();
+            SelectElement chooseSubcategory = new SelectElement(SubcategoryDropdown);
+            chooseSubcategory.SelectByText(addShareSkill.subcategory);
             renderTags();
             TagsTextbox.Click();
             TagsTextbox.SendKeys(addShareSkill.tagone);

@@ -1,6 +1,7 @@
 ﻿using AdvancedtaskSpecflow.Test_Model;
 using AdvancedtaskSpecflow.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace AdvancedtaskSpecflow.Pages.Components.Certifications
 {
@@ -61,7 +62,7 @@ namespace AdvancedtaskSpecflow.Pages.Components.Certifications
         public void addNewCertification(CertificationModel data)
         {
 
-            //AddNew.Click();
+            //AddNew and add award name;
             renderAddComponents();
             Thread.Sleep(2000);
             CertificateorAward.Click();
@@ -71,11 +72,11 @@ namespace AdvancedtaskSpecflow.Pages.Components.Certifications
             Wait.WaitToBeVisible(driver, "Name", "certificationFrom", 3);
             CertifiedFrom.Click();
             CertifiedFrom.SendKeys(data.certifiedFrom);
-
+            
             //Select the Title
             Wait.WaitToBeVisible(driver, "Name", "certificationYear", 3);
-            certifiedYear.Click();
-            certifiedYear.SendKeys(data.certifiedYear);
+            SelectElement chooseCertifiedYear = new SelectElement(certifiedYear);
+            chooseCertifiedYear.SelectByText(data.certifiedYear);
 
             //Click on Add button
             Wait.WaitToBeClickable(driver, "XPath", "//input [contains (@class, 'ui teal button')]", 3);

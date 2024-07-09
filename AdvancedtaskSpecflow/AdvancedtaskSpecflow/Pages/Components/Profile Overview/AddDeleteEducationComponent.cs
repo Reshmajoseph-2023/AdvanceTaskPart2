@@ -1,6 +1,7 @@
 ﻿using AdvancedtaskSpecflow.Test_Model;
 using AdvancedtaskSpecflow.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 
 
@@ -26,10 +27,10 @@ namespace AdvancedtaskSpecflow.Pages.Components.Profile
             try
             {
                 CollegeName = driver.FindElement(By.Name("instituteName"));
-                CountryOfCollege = driver.FindElement(By.Name("country"));
-                Title = driver.FindElement(By.Name("title"));
+                CountryOfCollege = driver.FindElement(By.XPath("//select[@name='country']"));
+                Title = driver.FindElement(By.XPath("//select[@name='title']"));
                 Degree = driver.FindElement(By.Name("degree"));
-                YearOfGraduation = driver.FindElement(By.Name("yearOfGraduation"));
+                YearOfGraduation = driver.FindElement(By.XPath("//select[@name='yearOfGraduation']"));
                 AddButton = driver.FindElement(By.XPath("//input [contains (@class, 'ui teal button')]"));
 
             }
@@ -66,29 +67,24 @@ namespace AdvancedtaskSpecflow.Pages.Components.Profile
         public void addNewEducation(EducationModel data)
         {
             renderAddComponents();
-          
             CollegeName.Click();
             Thread.Sleep(4000);
             CollegeName.SendKeys(data.UniversityName);
            
             //Select the name of the Country
-            Wait.WaitToBeVisible(driver, "Name", "country", 3);
-            CountryOfCollege.Click();
-            CountryOfCollege.SendKeys(data.CountryOfCollege);
+            SelectElement chooseCountryOfCollege = new SelectElement(CountryOfCollege);
+            chooseCountryOfCollege.SelectByValue(data.CountryOfCollege);
 
             //Select the Title
-            Wait.WaitToBeVisible(driver, "Name", "title", 3);
-            Title.Click();
-            Title.SendKeys(data.Title);
+            SelectElement chooseTitle = new SelectElement(Title);
+            chooseTitle.SelectByValue(data.Title);
 
             //Enter the Degree
-            Wait.WaitToBeVisible(driver, "Name", "degree", 3);
             Degree.SendKeys(data.Degree);
 
             //Select the year of graduation
-            Wait.WaitToBeClickable(driver, "Name", "yearOfGraduation", 3);
-            YearOfGraduation.Click();
-            YearOfGraduation.SendKeys(data.YearOfGraduation);
+            SelectElement chooseYearOfGraduation = new SelectElement(YearOfGraduation);
+            chooseYearOfGraduation.SelectByValue(data.YearOfGraduation);
 
             //Click on Add button
             Wait.WaitToBeClickable(driver, "XPath", "//input [contains (@class, 'ui teal button')]", 3);
